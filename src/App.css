@@ -1,0 +1,22 @@
+nav{
+  padding: 1rem;
+  font-size: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  a{
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    font-weight: bold;
+    color: rgb(237,231,154);
+    text-shadow: 1px 1px 1px #000;
+    &:hover{
+      text-decoration: underline;
+    }
+    &.active{
+      color:rgb(246, 246, 246);
+    }
+  }
+  
+}
