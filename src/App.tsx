@@ -1,13 +1,15 @@
 import './App.css'
-import { BrowserRouter, Routes, Route, NavLink } from 'react-router'
-import Home from './components/Home'
-import MovieList from './components/MovieList'
-import Favorites from './components/Favorites'
+import { BrowserRouter, Routes, Route, NavLink } from 'react-router';
+import Home from './components/Home';
+import MovieList from './components/MovieList';
+import Favorites from './components/Favorites';
+import { FavoritesProvider } from './context/FavoritesContext';
 
 function App() {
 
   return(
-    <BrowserRouter>
+    <FavoritesProvider>
+      <BrowserRouter>
       <nav>
         <NavLink to="/">Főoldal</NavLink>
         <NavLink to="/movielist">Filmek</NavLink>
@@ -21,6 +23,7 @@ function App() {
     </Routes>
 
     </BrowserRouter>
+    </FavoritesProvider>
   ) 
 }
 

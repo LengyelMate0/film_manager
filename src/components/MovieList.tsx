@@ -3,11 +3,12 @@ import type { MovieType, MovieCompType } from "../types/movie-types";
 import { getAllFilms } from "../services/app";
 import { useEffect, useState, useMemo, useRef } from "react";
 import Movie from "./Movie";
+import { useFavorites } from "../context/FavoritesContext";
 
 const MovieList = () => {
     const [movies, setMovies] = useState<MovieType[]>([]);
     const [searchInput, setSearchInput] = useState("");
-    const [favorites, setFavorites] = useState<string[]>([]);
+    const {favorites, addFavorite} = useFavorites();
     const inputRef = useRef<HTMLInputElement | null>(null);
     useEffect(() => {
         (async () => {
@@ -21,13 +22,13 @@ const MovieList = () => {
         return movies.filter(m => m.title.toLowerCase().includes(searchInput.toLowerCase()));
     }, [searchInput, movies])
 
-    function addFavorite(id: number) {
+    function handleFavorites(id: number) {
         const favoriteFilm = movies.find(f => f.id === id)
-        if (favoriteFilm) {
-            setFavorites(prev => prev.includes(favoriteFilm?.title)
+        if (favoriteFilm)
+           /*  setFavorites(prev => prev.includes(favoriteFilm?.title)
                 ? prev
-                : [...prev, favoriteFilm?.title])
-        }
+                : [...prev, favoriteFilm?.title]) */
+        addFavorite(favoriteFilm.title);
 
     }
 
@@ -42,7 +43,7 @@ const MovieList = () => {
             </header>
             <main>
                 {searchableMovies.length > 0 && searchableMovies.map((m, i) => (
-                    <Movie key={i} {...m} addFavorite={addFavorite} />
+                    <Movie key={i} {...m} addFavorite={handleFavorites} />
                 ))}
             </main>
             <footer></footer>

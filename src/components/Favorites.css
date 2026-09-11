@@ -1,0 +1,26 @@
+.favorites{
+    color: white;
+}
+
+
+
+
+li{
+    margin: 2rem;
+    text-shadow: 2px,2px,2px, black;
+    font-size: larger;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+li a{
+    background: rgb(255, 0, 0);
+    cursor: pointer;
+    padding: .5rem;
+    margin-left: 1rem;
+}
+li a:hover{
+    color: rgb(21, 21, 21);
+    transition: .2s;
+}
