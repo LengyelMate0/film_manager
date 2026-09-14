@@ -4,6 +4,7 @@ type FavoritesContextType = {
     favorites: string[];
     addFavorite: (title: string) => void;
     deleteFavorite: (title: string) => void;
+    deleteAllFavs: (title: string) => void;
 }
 
 const FavoritesContext = createContext<FavoritesContextType | undefined>(undefined);
@@ -26,8 +27,12 @@ export const FavoritesProvider: React.FC<FavoritesPropType> = ({ children }) => 
         setFavorites(prev => prev.filter(t => t !== title));
     }
 
+    function deleteAllFavs(){
+        if (confirm("Törlöd?")) setFavorites([]);
+    }
+
     return (
-        <FavoritesContext.Provider value={{ favorites, addFavorite, deleteFavorite }}>
+        <FavoritesContext.Provider value={{ favorites, addFavorite, deleteFavorite, deleteAllFavs }}>
             {children}
         </FavoritesContext.Provider>
     );

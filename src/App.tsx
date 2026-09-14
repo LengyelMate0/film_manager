@@ -4,12 +4,17 @@ import Home from './components/Home';
 import MovieList from './components/MovieList';
 import Favorites from './components/Favorites';
 import { FavoritesProvider } from './context/FavoritesContext';
+import Header from './components/Header';
+import { ThemesProvider } from "./context/ThemesContext"
 
 function App() {
 
   return(
-    <FavoritesProvider>
+    <ThemesProvider>
+      <FavoritesProvider>
+      
       <BrowserRouter>
+      <Header/>
       <nav>
         <NavLink to="/">Főoldal</NavLink>
         <NavLink to="/movielist">Filmek</NavLink>
@@ -24,6 +29,8 @@ function App() {
 
     </BrowserRouter>
     </FavoritesProvider>
+    </ThemesProvider>
+    
   ) 
 }
 

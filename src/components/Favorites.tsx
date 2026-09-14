@@ -2,9 +2,9 @@ import "./Favorites.css";
 import { useFavorites } from "../context/FavoritesContext";
 
 const Favorites = () => {
-  const {favorites, deleteFavorite} = useFavorites();
-  
-  return (    
+  const { favorites, deleteFavorite, deleteAllFavs } = useFavorites();
+
+  return (
     <div className="favorites">
       <header>
         <h1>Kedvenc filmek</h1>
@@ -12,12 +12,16 @@ const Favorites = () => {
       <main>
         <ul>
           {/* li-map-pelés */}
-          {favorites.length > 0 && favorites.map((t,i)=>
+          {favorites.length > 0 && favorites.map((t, i) =>
             <li key={i}>{t}
-            <a onClick={() => deleteFavorite(t)}>Törlés</a>
+              <a onClick={() => deleteFavorite(t)}>Törlés</a>
             </li>
           )}
+          <section>
+            <a onClick={deleteAllFavs}>Összes kedvenc törlése</a>
+          </section>
         </ul>
+
       </main>
     </div>
   )
